@@ -9057,7 +9057,9 @@ dyncol_type:
             $$= DYN_COL_DECIMAL;
             Lex->charset= NULL;
           }
-        | char opt_binary
+        | char
+          { Lex->charset= thd->variables.collation_connection; }
+          opt_binary
           {
             LEX *lex= Lex;
             $$= DYN_COL_STRING;
